@@ -1,0 +1,602 @@
+[
+  {
+    "id": 1,
+    "title": "Reckless",
+    "genres": "Comedy|Drama|Romance",
+    "year": "2001"
+  },
+  {
+    "id": 2,
+    "title": "When a Man Loves a Woman",
+    "genres": "Drama|Romance",
+    "year": "1995"
+  },
+  {
+    "id": 3,
+    "title": "Creature",
+    "genres": "Documentary",
+    "year": "1997"
+  },
+  {
+    "id": 4,
+    "title": "Sex and Zen (Rou pu Tuan zhi tou Qing bao Jian)",
+    "genres": "Action|Adventure|Comedy|Fantasy",
+    "year": "2007"
+  },
+  {
+    "id": 5,
+    "title": "Des roses en hiver",
+    "genres": "Drama",
+    "year": "2007"
+  },
+  {
+    "id": 6,
+    "title": "The Magical Legend of the Leprechauns",
+    "genres": "Adventure|Children|Comedy|Fantasy|Romance",
+    "year": "2010"
+  },
+  {
+    "id": 7,
+    "title": "Marilena de la P7",
+    "genres": "Drama|Fantasy",
+    "year": "1984"
+  },
+  {
+    "id": 8,
+    "title": "Battle of Algiers, The (La battaglia di Algeri)",
+    "genres": "Drama|War",
+    "year": "2012"
+  },
+  {
+    "id": 9,
+    "title": "Winning of Barbara Worth, The",
+    "genres": "Drama|Romance|Western",
+    "year": "2009"
+  },
+  {
+    "id": 10,
+    "title": "Beijing Taxi",
+    "genres": "Documentary",
+    "year": "1993"
+  },
+  {
+    "id": 11,
+    "title": "Pleasure at Her Majesty's",
+    "genres": "Comedy|Documentary",
+    "year": "2009"
+  },
+  {
+    "id": 12,
+    "title": "Gang Related",
+    "genres": "Crime",
+    "year": "1993"
+  },
+  {
+    "id": 13,
+    "title": "Bird of Paradise",
+    "genres": "Adventure|Drama|Romance",
+    "year": "1990"
+  },
+  {
+    "id": 14,
+    "title": "Man Behind the Gun, The",
+    "genres": "Western",
+    "year": "1993"
+  },
+  {
+    "id": 15,
+    "title": "William S. Burroughs: A Man Within",
+    "genres": "Documentary",
+    "year": "1995"
+  },
+  {
+    "id": 16,
+    "title": "Half a Loaf of Kung Fu (Dian zhi gong fu gan chian chan)",
+    "genres": "Action|Comedy",
+    "year": "2006"
+  },
+  {
+    "id": 17,
+    "title": "Otaku",
+    "genres": "Documentary",
+    "year": "2004"
+  },
+  {
+    "id": 18,
+    "title": "Repeaters ",
+    "genres": "Action|Drama",
+    "year": "2009"
+  },
+  {
+    "id": 19,
+    "title": "Party Monster",
+    "genres": "Documentary",
+    "year": "2007"
+  },
+  {
+    "id": 20,
+    "title": "Two Days, One Night (Deux jours, une nuit)",
+    "genres": "Drama",
+    "year": "2009"
+  },
+  {
+    "id": 21,
+    "title": "To Be or Not to Be",
+    "genres": "Comedy|Drama|War",
+    "year": "2011"
+  },
+  {
+    "id": 22,
+    "title": "Good Student, The (Mr. Gibb)",
+    "genres": "Comedy",
+    "year": "1986"
+  },
+  {
+    "id": 23,
+    "title": "Synth Britannia",
+    "genres": "Documentary",
+    "year": "1995"
+  },
+  {
+    "id": 24,
+    "title": "Skenbart: En film om tåg",
+    "genres": "Comedy",
+    "year": "1993"
+  },
+  {
+    "id": 25,
+    "title": "The Improv: 50 Years Behind the Brick Wall",
+    "genres": "Comedy|Documentary",
+    "year": "2007"
+  },
+  {
+    "id": 26,
+    "title": "Naan Kadavul",
+    "genres": "Action|Drama|Mystery",
+    "year": "2011"
+  },
+  {
+    "id": 27,
+    "title": "Fitzcarraldo",
+    "genres": "Adventure|Drama",
+    "year": "2004"
+  },
+  {
+    "id": 28,
+    "title": "Liam",
+    "genres": "Drama",
+    "year": "2010"
+  },
+  {
+    "id": 29,
+    "title": "You, Me and Dupree",
+    "genres": "Comedy",
+    "year": "2012"
+  },
+  {
+    "id": 30,
+    "title": "Monkey Business",
+    "genres": "Comedy",
+    "year": "2012"
+  },
+  {
+    "id": 31,
+    "title": "Run Sister Run!",
+    "genres": "Drama",
+    "year": "2006"
+  },
+  {
+    "id": 32,
+    "title": "Police Story (Ging chaat goo si)",
+    "genres": "Action|Comedy|Crime|Thriller",
+    "year": "1991"
+  },
+  {
+    "id": 33,
+    "title": "Come Drink with Me (Da zui xia)",
+    "genres": "Action|Adventure|Crime",
+    "year": "2006"
+  },
+  {
+    "id": 34,
+    "title": "Libre échange",
+    "genres": "Comedy",
+    "year": "2009"
+  },
+  {
+    "id": 35,
+    "title": "Little Monsters",
+    "genres": "Comedy",
+    "year": "2005"
+  },
+  {
+    "id": 36,
+    "title": "Hunter, The",
+    "genres": "Action|Thriller",
+    "year": "2009"
+  },
+  {
+    "id": 37,
+    "title": "Bite the Bullet",
+    "genres": "Action|Adventure|Western",
+    "year": "1994"
+  },
+  {
+    "id": 38,
+    "title": "Praying with Lior",
+    "genres": "Documentary",
+    "year": "2008"
+  },
+  {
+    "id": 39,
+    "title": "State Fair",
+    "genres": "Comedy|Drama|Romance",
+    "year": "1997"
+  },
+  {
+    "id": 40,
+    "title": "Ursul",
+    "genres": "Comedy|Drama",
+    "year": "1996"
+  },
+  {
+    "id": 41,
+    "title": "In Fear",
+    "genres": "Thriller",
+    "year": "2000"
+  },
+  {
+    "id": 42,
+    "title": "Hamlet",
+    "genres": "Drama",
+    "year": "2009"
+  },
+  {
+    "id": 43,
+    "title": "Lights Out",
+    "genres": "Drama|Mystery|Thriller",
+    "year": "2001"
+  },
+  {
+    "id": 44,
+    "title": "Tommy",
+    "genres": "Drama|Musical",
+    "year": "2001"
+  },
+  {
+    "id": 45,
+    "title": "61*",
+    "genres": "Drama",
+    "year": "2010"
+  },
+  {
+    "id": 46,
+    "title": "Black Sunday (La maschera del demonio)",
+    "genres": "Horror",
+    "year": "2003"
+  },
+  {
+    "id": 47,
+    "title": "Run Sister Run!",
+    "genres": "Drama",
+    "year": "2003"
+  },
+  {
+    "id": 48,
+    "title": "Atomic States of America, The",
+    "genres": "Documentary",
+    "year": "1992"
+  },
+  {
+    "id": 49,
+    "title": "2046",
+    "genres": "Drama|Fantasy|Romance|Sci-Fi",
+    "year": "2006"
+  },
+  {
+    "id": 50,
+    "title": "Piano in a Factory, The (Gang de qin)",
+    "genres": "Comedy|Drama|Musical",
+    "year": "2005"
+  },
+  {
+    "id": 51,
+    "title": "Marc Maron: Thinky Pain",
+    "genres": "Comedy",
+    "year": "1995"
+  },
+  {
+    "id": 52,
+    "title": "Year Zero: The Silent Death of Cambodia",
+    "genres": "Documentary",
+    "year": "2005"
+  },
+  {
+    "id": 53,
+    "title": "Valley of the Bees (Údolí vcel)",
+    "genres": "Drama",
+    "year": "1994"
+  },
+  {
+    "id": 54,
+    "title": "Spider-Man 2",
+    "genres": "Action|Adventure|Sci-Fi|IMAX",
+    "year": "2006"
+  },
+  {
+    "id": 55,
+    "title": "Sin Retorno",
+    "genres": "Drama|Thriller",
+    "year": "2005"
+  },
+  {
+    "id": 56,
+    "title": "Harder They Fall, The",
+    "genres": "Drama|Film-Noir",
+    "year": "1990"
+  },
+  {
+    "id": 57,
+    "title": "Ingrid",
+    "genres": "Drama",
+    "year": "1994"
+  },
+  {
+    "id": 58,
+    "title": "While You Were Sleeping",
+    "genres": "Comedy|Romance",
+    "year": "1990"
+  },
+  {
+    "id": 59,
+    "title": "Experimenter",
+    "genres": "Drama",
+    "year": "1992"
+  },
+  {
+    "id": 60,
+    "title": "Or (a.k.a. My Treasure)",
+    "genres": "Drama",
+    "year": "1997"
+  },
+  {
+    "id": 61,
+    "title": "Perfume",
+    "genres": "Comedy|Drama",
+    "year": "1989"
+  },
+  {
+    "id": 62,
+    "title": "Wonder Boys",
+    "genres": "Comedy|Drama",
+    "year": "1998"
+  },
+  {
+    "id": 63,
+    "title": "Young Törless, The (Junge Törless, Der)",
+    "genres": "Drama",
+    "year": "1983"
+  },
+  {
+    "id": 64,
+    "title": "Conversation Piece (Gruppo di famiglia in un interno)",
+    "genres": "Drama",
+    "year": "2010"
+  },
+  {
+    "id": 65,
+    "title": "Clean and Sober",
+    "genres": "Drama",
+    "year": "2004"
+  },
+  {
+    "id": 66,
+    "title": "Michael Jackson's This Is It",
+    "genres": "Documentary|Musical|IMAX",
+    "year": "1999"
+  },
+  {
+    "id": 67,
+    "title": "Napoleon and Samantha",
+    "genres": "Adventure|Drama",
+    "year": "2000"
+  },
+  {
+    "id": 68,
+    "title": "Last Real Men, The (Die letzten Männer)",
+    "genres": "Documentary",
+    "year": "2003"
+  },
+  {
+    "id": 69,
+    "title": "B. Monkey",
+    "genres": "Crime|Romance|Thriller",
+    "year": "2000"
+  },
+  {
+    "id": 70,
+    "title": "Everything or Nothing: The Untold Story of 007",
+    "genres": "Documentary",
+    "year": "2009"
+  },
+  {
+    "id": 71,
+    "title": "Operation Crossbow",
+    "genres": "Action|Adventure|War",
+    "year": "2004"
+  },
+  {
+    "id": 72,
+    "title": "Tere Naam",
+    "genres": "Romance",
+    "year": "2003"
+  },
+  {
+    "id": 73,
+    "title": "Jay And Silent Bob's Super Groovy Cartoon Movie",
+    "genres": "(no genres listed)",
+    "year": "1989"
+  },
+  {
+    "id": 74,
+    "title": "Sex and Zen (Rou pu Tuan zhi tou Qing bao Jian)",
+    "genres": "Action|Adventure|Comedy|Fantasy",
+    "year": "2009"
+  },
+  {
+    "id": 75,
+    "title": "Korso",
+    "genres": "Drama",
+    "year": "2007"
+  },
+  {
+    "id": 76,
+    "title": "Booty Call",
+    "genres": "Comedy|Romance",
+    "year": "2007"
+  },
+  {
+    "id": 77,
+    "title": "In the Mirror of Maya Deren (Im Spiegel der Maya Deren)",
+    "genres": "Documentary",
+    "year": "2012"
+  },
+  {
+    "id": 78,
+    "title": "Maid to Order",
+    "genres": "Comedy|Fantasy",
+    "year": "1995"
+  },
+  {
+    "id": 79,
+    "title": "Alice (Neco z Alenky)",
+    "genres": "Animation|Fantasy|Mystery",
+    "year": "2011"
+  },
+  {
+    "id": 80,
+    "title": "Zotz!",
+    "genres": "Comedy|Fantasy|Horror",
+    "year": "2007"
+  },
+  {
+    "id": 81,
+    "title": "Hero (Ying xiong)",
+    "genres": "Action|Adventure|Drama",
+    "year": "2012"
+  },
+  {
+    "id": 82,
+    "title": "Bed & Board (Domicile conjugal)",
+    "genres": "Comedy|Drama",
+    "year": "1999"
+  },
+  {
+    "id": 83,
+    "title": "Nature of the Beast, The",
+    "genres": "Crime|Horror|Mystery|Thriller",
+    "year": "1986"
+  },
+  {
+    "id": 84,
+    "title": "Odgrobadogroba",
+    "genres": "Comedy|Drama",
+    "year": "1997"
+  },
+  {
+    "id": 85,
+    "title": "Teen Spirit",
+    "genres": "Comedy",
+    "year": "2006"
+  },
+  {
+    "id": 86,
+    "title": "Ghost of Frankenstein, The",
+    "genres": "Horror",
+    "year": "2013"
+  },
+  {
+    "id": 87,
+    "title": "Wadjda",
+    "genres": "Drama",
+    "year": "2002"
+  },
+  {
+    "id": 88,
+    "title": "Blackout",
+    "genres": "Action|Thriller",
+    "year": "1996"
+  },
+  {
+    "id": 89,
+    "title": "Secret of Moonacre, The",
+    "genres": "Adventure|Fantasy|Romance",
+    "year": "2008"
+  },
+  {
+    "id": 90,
+    "title": "Mean Guns",
+    "genres": "Action|Crime|Thriller",
+    "year": "1986"
+  },
+  {
+    "id": 91,
+    "title": "Pillow Talk",
+    "genres": "Comedy|Musical|Romance",
+    "year": "1999"
+  },
+  {
+    "id": 92,
+    "title": "Fur: An Imaginary Portrait of Diane Arbus",
+    "genres": "Drama|Fantasy|Romance",
+    "year": "2010"
+  },
+  {
+    "id": 93,
+    "title": "Lonely Guy, The",
+    "genres": "Comedy",
+    "year": "2008"
+  },
+  {
+    "id": 94,
+    "title": "Heavy Metal",
+    "genres": "Action|Adventure|Animation|Horror|Sci-Fi",
+    "year": "2007"
+  },
+  {
+    "id": 95,
+    "title": "Bride Wars",
+    "genres": "Comedy|Romance",
+    "year": "1989"
+  },
+  {
+    "id": 96,
+    "title": "In Your Hands",
+    "genres": "Drama",
+    "year": "2002"
+  },
+  {
+    "id": 97,
+    "title": "Lucky Jordan",
+    "genres": "Comedy|Crime|Drama",
+    "year": "2012"
+  },
+  {
+    "id": 98,
+    "title": "Mostly Martha (Bella Martha)",
+    "genres": "Comedy|Drama|Romance",
+    "year": "2002"
+  },
+  {
+    "id": 99,
+    "title": "Quebrando o Tabu",
+    "genres": "Documentary",
+    "year": "2011"
+  },
+  {
+    "id": 100,
+    "title": "Outlaw Josey Wales, The",
+    "genres": "Action|Adventure|Drama|Thriller|Western",
+    "year": "2006"
+  }
+]
