@@ -20,10 +20,21 @@ const verifyToken = (req, res, next) => {
   try {
     const decoded = jwt.verify(token, "private-Key");
     req.user = decoded.user;
+
     next();
   } catch (error) {
     res.status(401).json({ message: "Token tidak valid." });
   }
 };
 
-module.exports = { hashPassword, checkPassword, verifyToken };
+const checkRole = (req, res, next) => {
+  if (req.user.role !== "admin") {
+    return res
+      .status(401)
+      .json({ message: "anda tidak diizinkan untuk memanipulasi data" });
+  }
+
+  next();
+};
+
+module.exports = { hashPassword, checkPassword, verifyToken, checkRole };

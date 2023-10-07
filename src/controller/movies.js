@@ -1,16 +1,10 @@
-const prisma = require("../config/database");
+const models = require("../models/movies");
 
 const getAllMovies = async (req, res, users) => {
   try {
     const { page, limit } = req.query;
     const { email, role } = req.user;
-    const offset = (+page - 1) * limit;
-    const movie = await prisma.movies.findMany({
-      skip: offset,
-      take: +limit,
-    });
-
-    const totalUsers = await prisma.users.count();
+    const { data, totalUsers } = await models.getAllMovies(page, limit);
     res.status(200).json({
       user: {
         email,
@@ -18,7 +12,7 @@ const getAllMovies = async (req, res, users) => {
       },
       totalPages: Math.floor(totalUsers / +limit),
       currentPage: +page,
-      movie,
+      data,
     });
   } catch (error) {
     res.status(500).json({ message: "Internal Server Error", error });
@@ -30,18 +24,7 @@ const createMovie = async (req, res) => {
     const { email, role } = req.user;
     const { title, genres, year } = req.body;
 
-    if (role !== "admin")
-      return res
-        .status(401)
-        .json({ message: "tidak bisa mengedit data, anda bukan admin" });
-
-    const data = await prisma.movies.create({
-      data: {
-        title,
-        genres,
-        year,
-      },
-    });
+    const data = await models.createMovie(title, genres, year);
     res.status(200).json({
       user: {
         email,
@@ -61,19 +44,7 @@ const updateMovie = async (req, res) => {
     const { idMovies } = req.params;
     const { title, genres, year } = req.body;
 
-    if (role !== "admin")
-      return res
-        .status(401)
-        .json({ message: "tidak bisa mengedit data, anda bukan admin" });
-
-    const data = await prisma.movies.update({
-      where: { id: +idMovies },
-      data: {
-        title,
-        genres,
-        year,
-      },
-    });
+    const data = await models.updateMovie(idMovies, title, genres, year);
 
     res.status(200).json({
       user: {
@@ -88,4 +59,22 @@ const updateMovie = async (req, res) => {
   }
 };
 
-module.exports = { getAllMovies, createMovie, updateMovie };
+const deleteMovie = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const { email, role } = req.user;
+
+    await models.deleteMovie(id);
+    res.status(200).json({
+      user: {
+        email,
+        role,
+      },
+      message: "DELETE movie successfully",
+    });
+  } catch (error) {
+    res.status(500).json({ message: "Internal Server Error", error });
+  }
+};
+
+module.exports = { getAllMovies, createMovie, updateMovie, deleteMovie };

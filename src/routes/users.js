@@ -1,22 +1,23 @@
 const express = require("express");
-
+const { verifyToken, checkRole } = require("../middleware/authentication");
 const {
   getDataUsers,
-  registerUsers,
-  loginUsers,
-  logoutUsers,
+  registerUser,
+  loginUser,
+  logoutUser,
+  updateUser,
 } = require("../controller/users");
-
-const { verifyToken } = require("../middleware/authentication");
 
 const router = express.Router();
 
-router.get("/", getDataUsers);
+router.post("/register", registerUser);
 
-router.post("/register", registerUsers);
+router.post("/login", loginUser);
 
-router.post("/login", loginUsers);
+router.post("/logout", verifyToken, logoutUser);
 
-router.post("/logout", verifyToken, logoutUsers);
+router.get("/", verifyToken, getDataUsers);
+
+router.patch("/:id", verifyToken, checkRole, updateUser);
 
 module.exports = router;

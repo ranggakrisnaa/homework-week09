@@ -1,53 +1,53 @@
-const prisma = require("../config/database");
-const {
-  hashPassword,
-  checkPassword,
-  randomNumber,
-} = require("../middleware/authentication");
+const { hashPassword, checkPassword } = require("../middleware/authentication");
+
+const models = require("../models/users");
 
 const jwt = require("jsonwebtoken");
 
 const getDataUsers = async (req, res) => {
   try {
-    const data = await prisma.users.findMany();
-    res.status(200).json(data);
+    const { email, role } = req.user;
+
+    const data = await models.getDataUsers();
+
+    res.status(200).json({
+      user: {
+        email,
+        role,
+      },
+      data,
+    });
   } catch (error) {
-    res.status(500).json({ message: "Internal Server Error", error });
+    res.status(500).json({
+      message: "Internal Server Error",
+      error,
+    });
   }
 };
 
-const registerUsers = async (req, res) => {
+const registerUser = async (req, res) => {
   try {
     const { email, gender, password, role } = req.body;
     const newPassword = await hashPassword(password);
-    const user = await prisma.users.create({
-      data: {
-        email: email,
-        gender: gender,
-        password: newPassword,
-        role: role,
-      },
-    });
 
-    res.status(200).json({ message: "REGISTER user successfully", user });
+    await models.registerUser(email, gender, newPassword, role);
+
+    res.status(200).json({ message: "REGISTER user successfully" });
   } catch (error) {
     res.status(500).json({ message: "Internal Server Error", error });
   }
 };
 
-const loginUsers = async (req, res) => {
+const loginUser = async (req, res) => {
   try {
     const { email, password } = req.body;
 
-    const user = await prisma.users.findFirst({
-      where: { email: email },
-    });
+    const data = await models.loginUser(email);
+    const passwordMatch = await checkPassword(password, data.password);
 
-    const passwordMatch = await checkPassword(password, user.password);
-
-    if (user && passwordMatch) {
+    if (data && passwordMatch) {
       const token = jwt.sign(
-        { user: { id: user.id, email: user.email, role: user.role } },
+        { user: { id: data.id, email: data.email, role: data.role } },
         "private-Key",
         { expiresIn: "1h" }
       );
@@ -63,12 +63,33 @@ const loginUsers = async (req, res) => {
   }
 };
 
-const logoutUsers = async (req, res) => {
-  let token = req.headers.authorization;
-  const random = randomNumber();
-  token = token + random;
-
+const logoutUser = async (req, res) => {
   res.status(200).json({ message: "Logout berhasil" });
 };
 
-module.exports = { getDataUsers, registerUsers, loginUsers, logoutUsers };
+const updateUser = async (req, res) => {
+  try {
+    const user = req.user;
+    const { id } = req.params;
+    const { email, gender, password, role } = req.body;
+    const data = await models.updateUser(+id, email, gender, password, role);
+    res.status(200).json({
+      user: {
+        email: user.email,
+        role: user.role,
+      },
+      message: "UPDATE user successfully",
+      data,
+    });
+  } catch (error) {
+    res.status(500).json({ message: "Internal Server Error", error });
+  }
+};
+
+module.exports = {
+  getDataUsers,
+  registerUser,
+  loginUser,
+  logoutUser,
+  updateUser,
+};
