@@ -1,41 +1,36 @@
 const prisma = require("../config/database");
 
 const getDataUsers = async () => {
-  const data = await prisma.users.findMany();
-  return data;
+  return await prisma.users.findMany();
 };
 
 const registerUser = async (email, gender, newPassword, role) => {
-  const data = await prisma.users.create({
+  return await prisma.users.create({
     data: {
-      email: email,
-      gender: gender,
+      email,
+      gender,
       password: newPassword,
-      role: role,
+      role,
     },
   });
-  return data;
 };
 
 const loginUser = async (email) => {
-  console.log(email);
-  const data = await prisma.users.findFirst({
-    where: { email: email },
+  return await prisma.users.findFirst({
+    where: { email },
   });
-  return data;
 };
 
 const updateUser = async (id, email, gender, password, role) => {
-  const data = await prisma.users.update({
+  return await prisma.users.update({
     where: { id: id },
     data: {
-      email: email,
-      gender: gender,
-      password: password,
-      role: role,
+      email,
+      gender,
+      password,
+      role,
     },
   });
-  return data;
 };
 
 module.exports = {

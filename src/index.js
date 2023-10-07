@@ -11,7 +11,6 @@ app.use(express.json());
 app.use(morgan("tiny"));
 
 app.use("/users", usersRoutes);
-
 app.use("/movies", moviesRoutes);
 
 app.listen(PORT, () => {

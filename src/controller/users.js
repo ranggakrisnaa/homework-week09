@@ -1,7 +1,5 @@
 const { hashPassword, checkPassword } = require("../middleware/authentication");
-
 const models = require("../models/users");
-
 const jwt = require("jsonwebtoken");
 
 const getDataUsers = async (req, res) => {

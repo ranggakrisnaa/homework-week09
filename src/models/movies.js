@@ -13,18 +13,17 @@ const getAllMovies = async (page, limit) => {
 };
 
 const createMovie = async (title, genres, year) => {
-  const data = await prisma.movies.create({
+  return await prisma.movies.create({
     data: {
       title,
       genres,
       year,
     },
   });
-  return data;
 };
 
 const updateMovie = async (idMovies, title, genres, year) => {
-  const data = await prisma.movies.update({
+  return await prisma.movies.update({
     where: { id: +idMovies },
     data: {
       title,
@@ -32,16 +31,12 @@ const updateMovie = async (idMovies, title, genres, year) => {
       year,
     },
   });
-
-  return data;
 };
 
 const deleteMovie = async (id) => {
-  const data = await prisma.movies.delete({
+  return await prisma.movies.delete({
     where: { id: +id },
   });
-
-  return data;
 };
 
 module.exports = { getAllMovies, createMovie, updateMovie, deleteMovie };
