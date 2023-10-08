@@ -7,15 +7,19 @@ const models = require("../models/users");
 
 const getAllUsers = async (req, res) => {
   try {
+    const { page, limit } = req.query;
     const { email, role } = req.user;
 
-    const data = await models.getAllUsers();
+    const { data, totalUsers } = await models.getAllUsers(+page, +limit);
 
     res.status(200).json({
       user: {
         email,
         role,
       },
+      totalData: totalUsers,
+      totalPages: Math.floor(totalUsers / +limit),
+      currentPage: +page,
       data,
     });
   } catch (error) {
@@ -55,7 +59,7 @@ const loginUser = async (req, res) => {
 
       res.status(200).json({ message: "LOGIN user successfully", token });
     } else {
-      res.status(401).json({ error: "email atau kata sandi anda salah" });
+      res.status(401).json({ error: "Email or password is incorrect" });
     }
   } catch (error) {
     res.status(500).json({ message: "Internal Server Error", error });
@@ -73,7 +77,7 @@ const updateUser = async (req, res) => {
 
     const user = await models.getUser(+id);
     if (!user) {
-      return res.status(404).json({ message: "data not found" });
+      return res.status(404).json({ message: "Data not found" });
     }
 
     await models.updateUser(+id, email, gender, password, role);
@@ -97,7 +101,7 @@ const deleteUser = async (req, res) => {
 
     const user = await models.getUser(+id);
     if (!user) {
-      return res.status(404).json({ message: "data not found" });
+      return res.status(404).json({ message: "Data not found" });
     }
 
     await models.deleteUser(+id);

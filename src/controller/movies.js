@@ -6,13 +6,14 @@ const getAllMovies = async (req, res, users) => {
     const { page, limit } = req.query;
     const { email, role } = req.user;
 
-    const { data, totalUsers } = await models.getAllMovies(page, limit);
+    const { data, totalMovies } = await models.getAllMovies(+page, +limit);
 
     res.status(200).json({
       user: {
         email,
         role,
       },
+      totalData: totalMovies,
       totalPages: Math.floor(totalUsers / +limit),
       currentPage: +page,
       data,
@@ -49,7 +50,7 @@ const updateMovie = async (req, res) => {
 
     const movie = await models.getMovie(+idMovies);
     if (!movie) {
-      return res.status(404).json({ message: "data not found" });
+      return res.status(404).json({ message: "Data not found" });
     }
 
     await models.updateMovie(idMovies, title, genres, year);
@@ -74,7 +75,7 @@ const deleteMovie = async (req, res) => {
 
     const movie = await models.getMovie(+id);
     if (!movie) {
-      return res.status(404).json({ message: "data not found" });
+      return res.status(404).json({ message: "Data not found" });
     }
 
     await models.deleteMovie(id);

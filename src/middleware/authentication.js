@@ -5,24 +5,24 @@ const SECRET_KEY = process.env.SECRET_KEY;
 
 const hashPassword = async (password) => {
   const saltRounds = 10;
-  const hash = await bcrypt.hash(password, saltRounds);
-  return hash;
+  return await bcrypt.hash(password, saltRounds);
 };
 
 const checkPassword = async (password, hashedPassword) => {
-  const check = await bcrypt.compare(password, hashedPassword);
-  return check;
+  return await bcrypt.compare(password, hashedPassword);
 };
 
 const signToken = (user) => {
-  const data = jwt.sign({ user }, SECRET_KEY, { expiresIn: "1h" });
-  return data;
+  return jwt.sign({ user }, SECRET_KEY, { expiresIn: "1h" });
 };
 
 const isAuthenticated = (req, res, next) => {
   const token = req.headers.authorization;
+
   if (!token)
-    return res.status(401).json({ message: "Akses ditolak. Token tidak ada." });
+    return res
+      .status(401)
+      .json({ message: "Unauthorized. Token does not exist." });
 
   try {
     const payload = jwt.verify(token, SECRET_KEY);
@@ -30,7 +30,7 @@ const isAuthenticated = (req, res, next) => {
 
     next();
   } catch (error) {
-    res.status(401).json({ message: "Token tidak valid." });
+    res.status(401).json({ message: "Token is invalid." });
   }
 };
 
@@ -38,7 +38,7 @@ const checkRole = (req, res, next) => {
   if (req.user.role !== "admin") {
     return res
       .status(401)
-      .json({ message: "anda tidak diizinkan untuk memanipulasi data" });
+      .json({ message: "Not permitted to access the data" });
   }
 
   next();

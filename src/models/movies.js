@@ -1,15 +1,15 @@
 const prisma = require("../config/database");
 
 const getAllMovies = async (page, limit) => {
-  const offset = (+page - 1) * limit;
+  const offset = (page - 1) * limit;
   const data = await prisma.movies.findMany({
     skip: offset,
-    take: +limit,
+    take: limit,
   });
 
-  const totalUsers = await prisma.users.count();
+  const totalMovies = await prisma.movies.count();
 
-  return { data, totalUsers };
+  return { data, totalMovies };
 };
 
 const getMovie = async (id) => {
