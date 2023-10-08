@@ -1,5 +1,5 @@
 const express = require("express");
-const { verifyToken, checkRole } = require("../middleware/authentication");
+const { isAuthenticated, checkRole } = require("../middleware/authentication");
 const {
   getDataUsers,
   registerUser,
@@ -10,14 +10,14 @@ const {
 
 const router = express.Router();
 
-router.post("/register", registerUser);
+router.post("/api/register", registerUser);
 
-router.post("/login", loginUser);
+router.post("/api/login", loginUser);
 
-router.post("/logout", verifyToken, logoutUser);
+router.post("/api/logout", isAuthenticated, logoutUser);
 
-router.get("/", verifyToken, getDataUsers);
+router.get("/api/users/", isAuthenticated, getDataUsers);
 
-router.patch("/:id", verifyToken, checkRole, updateUser);
+router.patch("/api/users/:id", isAuthenticated, checkRole, updateUser);
 
 module.exports = router;

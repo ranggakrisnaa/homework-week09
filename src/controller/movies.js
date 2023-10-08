@@ -4,7 +4,9 @@ const getAllMovies = async (req, res, users) => {
   try {
     const { page, limit } = req.query;
     const { email, role } = req.user;
+
     const { data, totalUsers } = await models.getAllMovies(page, limit);
+
     res.status(200).json({
       user: {
         email,
@@ -24,14 +26,14 @@ const createMovie = async (req, res) => {
     const { email, role } = req.user;
     const { title, genres, year } = req.body;
 
-    const data = await models.createMovie(title, genres, year);
+    await models.createMovie(title, genres, year);
+
     res.status(200).json({
       user: {
         email,
         role,
       },
       message: "CREATE movie successfully",
-      data,
     });
   } catch (error) {
     res.status(500).json({ message: "Internal Server Error", error });
@@ -45,6 +47,9 @@ const updateMovie = async (req, res) => {
     const { title, genres, year } = req.body;
 
     const data = await models.updateMovie(idMovies, title, genres, year);
+    if (!data) {
+      return res.status(404).json({ message: "data not found" });
+    }
 
     res.status(200).json({
       user: {
@@ -52,7 +57,6 @@ const updateMovie = async (req, res) => {
         role,
       },
       message: "UPDATE movie successfully",
-      data,
     });
   } catch (error) {
     res.status(500).json({ message: "Internal Server Error", error });
@@ -64,7 +68,11 @@ const deleteMovie = async (req, res) => {
     const { id } = req.params;
     const { email, role } = req.user;
 
-    await models.deleteMovie(id);
+    const data = await models.deleteMovie(id);
+    if (!data) {
+      return res.status(404).json({ message: "data not found" });
+    }
+
     res.status(200).json({
       user: {
         email,

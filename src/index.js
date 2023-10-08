@@ -10,8 +10,8 @@ const app = express();
 app.use(express.json());
 app.use(morgan("tiny"));
 
-app.use("/users", usersRoutes);
-app.use("/movies", moviesRoutes);
+app.use(usersRoutes);
+app.use(moviesRoutes);
 
 app.listen(PORT, () => {
   console.log(`listening on port ${PORT}`);

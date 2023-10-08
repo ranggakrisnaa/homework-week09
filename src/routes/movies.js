@@ -5,16 +5,16 @@ const {
   updateMovie,
   deleteMovie,
 } = require("../controller/movies");
-const { verifyToken, checkRole } = require("../middleware/authentication");
+const { isAuthenticated, checkRole } = require("../middleware/authentication");
 
 const router = express.Router();
 
-router.get("/", verifyToken, getAllMovies);
+router.get("/api/movies/", isAuthenticated, getAllMovies);
 
-router.post("/", verifyToken, checkRole, createMovie);
+router.post("/api/movies/", isAuthenticated, checkRole, createMovie);
 
-router.patch("/:idMovies", verifyToken, checkRole, updateMovie);
+router.patch("/api/movies/:idMovies", isAuthenticated, checkRole, updateMovie);
 
-router.delete("/:id", verifyToken, checkRole, deleteMovie);
+router.delete("/api/movies/:id", isAuthenticated, checkRole, deleteMovie);
 
 module.exports = router;

@@ -1,6 +1,9 @@
-const { hashPassword, checkPassword } = require("../middleware/authentication");
+const {
+  hashPassword,
+  checkPassword,
+  signToken,
+} = require("../middleware/authentication");
 const models = require("../models/users");
-const jwt = require("jsonwebtoken");
 
 const getDataUsers = async (req, res) => {
   try {
@@ -44,17 +47,15 @@ const loginUser = async (req, res) => {
     const passwordMatch = await checkPassword(password, data.password);
 
     if (data && passwordMatch) {
-      const token = jwt.sign(
-        { user: { id: data.id, email: data.email, role: data.role } },
-        "private-Key",
-        { expiresIn: "1h" }
-      );
+      const token = signToken({
+        id: data.id,
+        email: data.email,
+        role: data.role,
+      });
 
       res.status(200).json({ message: "LOGIN user successfully", token });
     } else {
-      return res
-        .status(401)
-        .json({ error: "email atau kata sandi anda salah" });
+      res.status(401).json({ error: "email atau kata sandi anda salah" });
     }
   } catch (error) {
     res.status(500).json({ message: "Internal Server Error", error });
@@ -70,7 +71,12 @@ const updateUser = async (req, res) => {
     const user = req.user;
     const { id } = req.params;
     const { email, gender, password, role } = req.body;
+
     const data = await models.updateUser(+id, email, gender, password, role);
+    if (!data) {
+      return res.status(404).json({ message: "data not found" });
+    }
+
     res.status(200).json({
       user: {
         email: user.email,
