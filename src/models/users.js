@@ -1,7 +1,11 @@
 const prisma = require("../config/database");
 
-const getDataUsers = async () => {
+const getAllUsers = async () => {
   return await prisma.users.findMany();
+};
+
+const getUser = async (id) => {
+  return prisma.users.findUnique({ where: { id } });
 };
 
 const registerUser = async (email, gender, newPassword, role) => {
@@ -33,9 +37,15 @@ const updateUser = async (id, email, gender, password, role) => {
   });
 };
 
+const deleteUser = async (id) => {
+  return await prisma.users.delete({ where: { id } });
+};
+
 module.exports = {
-  getDataUsers,
+  getAllUsers,
+  getUser,
   registerUser,
   loginUser,
   updateUser,
+  deleteUser,
 };

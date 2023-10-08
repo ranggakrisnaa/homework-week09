@@ -1,3 +1,4 @@
+const { validateData } = require("../middleware/authentication");
 const models = require("../models/movies");
 
 const getAllMovies = async (req, res, users) => {
@@ -46,10 +47,12 @@ const updateMovie = async (req, res) => {
     const { idMovies } = req.params;
     const { title, genres, year } = req.body;
 
-    const data = await models.updateMovie(idMovies, title, genres, year);
-    if (!data) {
+    const movie = await models.getMovie(+idMovies);
+    if (!movie) {
       return res.status(404).json({ message: "data not found" });
     }
+
+    await models.updateMovie(idMovies, title, genres, year);
 
     res.status(200).json({
       user: {
@@ -58,6 +61,7 @@ const updateMovie = async (req, res) => {
       },
       message: "UPDATE movie successfully",
     });
+    return movie;
   } catch (error) {
     res.status(500).json({ message: "Internal Server Error", error });
   }
@@ -68,10 +72,12 @@ const deleteMovie = async (req, res) => {
     const { id } = req.params;
     const { email, role } = req.user;
 
-    const data = await models.deleteMovie(id);
-    if (!data) {
+    const movie = await models.getMovie(+id);
+    if (!movie) {
       return res.status(404).json({ message: "data not found" });
     }
+
+    await models.deleteMovie(id);
 
     res.status(200).json({
       user: {

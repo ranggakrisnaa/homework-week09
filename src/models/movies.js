@@ -12,6 +12,10 @@ const getAllMovies = async (page, limit) => {
   return { data, totalUsers };
 };
 
+const getMovie = async (id) => {
+  return prisma.movies.findUnique({ where: { id } });
+};
+
 const createMovie = async (title, genres, year) => {
   return await prisma.movies.create({
     data: {
@@ -39,4 +43,10 @@ const deleteMovie = async (id) => {
   });
 };
 
-module.exports = { getAllMovies, createMovie, updateMovie, deleteMovie };
+module.exports = {
+  getAllMovies,
+  getMovie,
+  createMovie,
+  updateMovie,
+  deleteMovie,
+};

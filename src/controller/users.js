@@ -5,11 +5,11 @@ const {
 } = require("../middleware/authentication");
 const models = require("../models/users");
 
-const getDataUsers = async (req, res) => {
+const getAllUsers = async (req, res) => {
   try {
     const { email, role } = req.user;
 
-    const data = await models.getDataUsers();
+    const data = await models.getAllUsers();
 
     res.status(200).json({
       user: {
@@ -68,22 +68,46 @@ const logoutUser = async (req, res) => {
 
 const updateUser = async (req, res) => {
   try {
-    const user = req.user;
     const { id } = req.params;
     const { email, gender, password, role } = req.body;
 
-    const data = await models.updateUser(+id, email, gender, password, role);
-    if (!data) {
+    const user = await models.getUser(+id);
+    if (!user) {
       return res.status(404).json({ message: "data not found" });
     }
 
+    await models.updateUser(+id, email, gender, password, role);
+
     res.status(200).json({
       user: {
-        email: user.email,
-        role: user.role,
+        email: req.user.email,
+        role: req.user.role,
       },
       message: "UPDATE user successfully",
-      data,
+    });
+  } catch (error) {
+    res.status(500).json({ message: "Internal Server Error", error });
+  }
+};
+
+const deleteUser = async (req, res) => {
+  try {
+    const { email, role } = req.user;
+    const { id } = req.params;
+
+    const user = await models.getUser(+id);
+    if (!user) {
+      return res.status(404).json({ message: "data not found" });
+    }
+
+    await models.deleteUser(+id);
+
+    res.status(200).json({
+      user: {
+        email,
+        role,
+      },
+      message: "DELETE user successfully",
     });
   } catch (error) {
     res.status(500).json({ message: "Internal Server Error", error });
@@ -91,9 +115,10 @@ const updateUser = async (req, res) => {
 };
 
 module.exports = {
-  getDataUsers,
+  getAllUsers,
   registerUser,
   loginUser,
   logoutUser,
   updateUser,
+  deleteUser,
 };
