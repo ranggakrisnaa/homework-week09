@@ -12,14 +12,10 @@ const router = express.Router();
 
 router.post("/register", registerUser);
 router.post("/login", loginUser);
-router.patch("/users/:id", updateUser);
-
 router.use(isAuthenticated);
-
-router.get("/users/", getAllUsers);
-
+router.patch("/users", updateUser);
+router.get("/users", getAllUsers);
 router.use(checkRole);
-
 router.delete("/users/:id", deleteUser);
 
 module.exports = router;

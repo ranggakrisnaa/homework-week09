@@ -1,10 +1,9 @@
 const prisma = require("../config/database");
 
 const getAllUsers = async (page, limit) => {
-  const offset = (page - 1) * limit;
   const data = await prisma.users.findMany({
-    skip: offset,
-    take: limit,
+    skip: page && limit ? (page - 1) * limit : 0,
+    take: limit ? limit : 0,
   });
 
   const totalUsers = await prisma.users.count();
@@ -33,14 +32,14 @@ const loginUser = async (email) => {
   });
 };
 
-const updateUser = async (id, email, gender, password, role) => {
+const updateUser = async (id, user) => {
   return await prisma.users.update({
-    where: { id: id },
+    where: { id },
     data: {
-      email,
-      gender,
-      password,
-      role,
+      email: user.email,
+      gender: user.gender,
+      role: user.role,
+      password: user.password,
     },
   });
 };

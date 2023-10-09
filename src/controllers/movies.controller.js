@@ -3,74 +3,56 @@ const models = require("../models/movies.model");
 const getAllMovies = async (req, res) => {
   try {
     const { page, limit } = req.query;
-    const { email, role } = req.user;
 
     const { data, totalMovies } = await models.getAllMovies(+page, +limit);
 
     res.status(200).json({
-      user: {
-        email,
-        role,
-      },
       totalData: totalMovies,
       totalPages: Math.floor(totalMovies / +limit),
       currentPage: +page,
       data,
     });
   } catch (error) {
-    res.status(500).json({ message: "Internal Server Error", error });
+    res.status(500).json({ error: error.message });
   }
 };
 
 const createMovie = async (req, res) => {
   try {
-    const { email, role } = req.user;
     const { title, genres, year } = req.body;
 
     await models.createMovie(title, genres, year);
 
-    res.status(200).json({
-      user: {
-        email,
-        role,
-      },
+    res.status(201).json({
       message: "CREATE movie successfully",
     });
   } catch (error) {
-    res.status(500).json({ message: "Internal Server Error", error });
+    res.status(500).json({ error: error.message });
   }
 };
 
 const updateMovie = async (req, res) => {
   try {
-    const { email, role } = req.user;
     const { idMovies } = req.params;
     const { title, genres, year } = req.body;
 
     const movie = await models.getMovie(+idMovies);
-    if (!movie) {
-      return res.status(404).json({ message: "Data not found" });
-    }
+    if (!movie) res.status(404).json({ message: "Data not found" });
 
     await models.updateMovie(idMovies, title, genres, year);
 
     res.status(200).json({
-      user: {
-        email,
-        role,
-      },
       message: "UPDATE movie successfully",
     });
     return movie;
   } catch (error) {
-    res.status(500).json({ message: "Internal Server Error", error });
+    res.status(500).json({ error: error.message });
   }
 };
 
 const deleteMovie = async (req, res) => {
   try {
     const { id } = req.params;
-    const { email, role } = req.user;
 
     const movie = await models.getMovie(+id);
     if (!movie) {
@@ -80,14 +62,10 @@ const deleteMovie = async (req, res) => {
     await models.deleteMovie(id);
 
     res.status(200).json({
-      user: {
-        email,
-        role,
-      },
       message: "DELETE movie successfully",
     });
   } catch (error) {
-    res.status(500).json({ message: "Internal Server Error", error });
+    res.status(500).json({ error: error.message });
   }
 };
 

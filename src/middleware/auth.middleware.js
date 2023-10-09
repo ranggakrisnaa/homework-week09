@@ -5,7 +5,7 @@ const isAuthenticated = (req, res, next) => {
 
   if (!token)
     return res
-      .status(401)
+      .status(404)
       .json({ message: "Unauthorized. Token does not exist." });
 
   try {
