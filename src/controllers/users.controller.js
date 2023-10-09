@@ -1,9 +1,6 @@
-const {
-  hashPassword,
-  checkPassword,
-  signToken,
-} = require("../middleware/authentication");
-const models = require("../models/users");
+const { hashPassword, checkPassword } = require("../utils/bcrypt");
+const { generateToken } = require("../utils/jwt");
+const models = require("../models/users.model");
 
 const getAllUsers = async (req, res) => {
   try {
@@ -51,7 +48,7 @@ const loginUser = async (req, res) => {
     const passwordMatch = await checkPassword(password, data.password);
 
     if (data && passwordMatch) {
-      const token = signToken({
+      const token = generateToken({
         id: data.id,
         email: data.email,
         role: data.role,
@@ -72,17 +69,15 @@ const updateUser = async (req, res) => {
     const { email, gender, password, role } = req.body;
 
     const user = await models.getUser(+id);
+
     if (!user) {
       return res.status(404).json({ message: "Data not found" });
     }
 
-    await models.updateUser(+id, email, gender, password, role);
+    const newPassword = await hashPassword(password);
+    await models.updateUser(+id, email, gender, newPassword, role);
 
     res.status(200).json({
-      user: {
-        email: req.user.email,
-        role: req.user.role,
-      },
       message: "UPDATE user successfully",
     });
   } catch (error) {
