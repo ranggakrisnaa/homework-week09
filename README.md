@@ -1,9 +1,10 @@
-# homework-week09
+# Homework Express-JS Restful API & Middleware
 Kerjakan soal homework ini berdasarkan data SQL [berikut](https://github.com/fathy17/dokumen-pembanding-2/blob/master/movies-database.sql).
 ###
 ```markdown
-1. Buatlah RESTful API yang terdiri dari GET, POST, DELETE, dan PUT. Setelah itu buatlah endpoint untuk register user dan login user untuk implementasi authorization dan 
-    authentication. Pastikan yang hanya bisa mengakses API hanyalah user yang terdaftar.
+1. Buatlah RESTful API yang terdiri dari GET, POST, DELETE, dan PUT.
+Setelah itu buatlah endpoint untuk register user dan login user untuk implementasi
+authorization dan authentication. Pastikan yang hanya bisa mengakses API hanyalah user yang terdaftar.
 ```
 ###
 ```markdown
