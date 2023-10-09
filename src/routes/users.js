@@ -4,7 +4,6 @@ const {
   getAllUsers,
   registerUser,
   loginUser,
-  logoutUser,
   updateUser,
   deleteUser,
 } = require("../controller/users");
@@ -14,8 +13,6 @@ const router = express.Router();
 router.post("/api/register", registerUser);
 
 router.post("/api/login", loginUser);
-
-router.post("/api/logout", isAuthenticated, logoutUser);
 
 router.get("/api/users/", isAuthenticated, getAllUsers);
 

@@ -1,7 +1,6 @@
-const { validateData } = require("../middleware/authentication");
 const models = require("../models/movies");
 
-const getAllMovies = async (req, res, users) => {
+const getAllMovies = async (req, res) => {
   try {
     const { page, limit } = req.query;
     const { email, role } = req.user;
@@ -14,7 +13,7 @@ const getAllMovies = async (req, res, users) => {
         role,
       },
       totalData: totalMovies,
-      totalPages: Math.floor(totalUsers / +limit),
+      totalPages: Math.floor(totalMovies / +limit),
       currentPage: +page,
       data,
     });

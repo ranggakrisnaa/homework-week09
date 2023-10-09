@@ -66,10 +66,6 @@ const loginUser = async (req, res) => {
   }
 };
 
-const logoutUser = async (req, res) => {
-  res.status(200).json({ message: "Logout berhasil" });
-};
-
 const updateUser = async (req, res) => {
   try {
     const { id } = req.params;
@@ -122,7 +118,6 @@ module.exports = {
   getAllUsers,
   registerUser,
   loginUser,
-  logoutUser,
   updateUser,
   deleteUser,
 };
