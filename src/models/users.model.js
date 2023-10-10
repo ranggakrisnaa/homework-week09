@@ -2,8 +2,8 @@ const prisma = require("../config/database");
 
 const getAllUsers = async (page, limit) => {
   const data = await prisma.users.findMany({
-    skip: page && limit ? (page - 1) * limit : 0,
-    take: limit ? limit : 0,
+    skip: (page - 1) * limit,
+    take: limit,
   });
 
   const totalUsers = await prisma.users.count();

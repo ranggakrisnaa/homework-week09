@@ -5,6 +5,8 @@ const models = require("../models/users.model");
 const getAllUsers = async (req, res) => {
   try {
     const { page, limit } = req.query;
+    if (!page && !limit)
+      res.status(404).json({ message: "Data query is null" });
 
     const { data, totalUsers } = await models.getAllUsers(+page, +limit);
 

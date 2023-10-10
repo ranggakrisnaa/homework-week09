@@ -3,7 +3,6 @@ const models = require("../models/movies.model");
 const getAllMovies = async (req, res) => {
   try {
     const { page, limit } = req.query;
-
     if (!page && !limit)
       res.status(404).json({ message: "Data query is null" });
 

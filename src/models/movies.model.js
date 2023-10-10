@@ -1,9 +1,8 @@
 const prisma = require("../config/database");
 
 const getAllMovies = async (page, limit) => {
-  const offset = (page - 1) * limit;
   const data = await prisma.movies.findMany({
-    skip: offset,
+    skip: (page - 1) * limit,
     take: limit,
   });
 
@@ -41,7 +40,6 @@ const deleteMovie = async (id) => {
 
 module.exports = {
   getAllMovies,
-  getMovie,
   createMovie,
   updateMovie,
   deleteMovie,
