@@ -1,5 +1,5 @@
-const { hashPassword, checkPassword } = require("../utils/bcrypt");
-const { generateToken } = require("../utils/jwt");
+const { hashPassword, checkPassword } = require("../utils/bcrypt.utils");
+const { generateToken } = require("../utils/jwt.utils");
 const models = require("../models/users.model");
 
 const getAllUsers = async (req, res) => {
@@ -51,6 +51,7 @@ const loginUser = async (req, res) => {
       email: data.email,
       role: data.role,
     });
+
     res.status(200).json({ message: "LOGIN user successfully", token });
   } catch (error) {
     res.status(500).json({ error: error.message });
@@ -61,7 +62,7 @@ const updateUser = async (req, res) => {
   try {
     const { id } = req.user;
     const { email, gender, oldPassword, newPassword, role } = req.body;
-    console.log(email);
+
     const user = await models.getUser(+id);
 
     let updatedUser = {

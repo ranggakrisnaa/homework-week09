@@ -4,6 +4,9 @@ const getAllMovies = async (req, res) => {
   try {
     const { page, limit } = req.query;
 
+    if (!page && !limit)
+      res.status(404).json({ message: "Data query is null" });
+
     const { data, totalMovies } = await models.getAllMovies(+page, +limit);
 
     res.status(200).json({

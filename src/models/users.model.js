@@ -33,13 +33,14 @@ const loginUser = async (email) => {
 };
 
 const updateUser = async (id, user) => {
+  const { email, gender, role, password } = user;
   return await prisma.users.update({
     where: { id },
     data: {
-      email: user.email,
-      gender: user.gender,
-      role: user.role,
-      password: user.password,
+      email,
+      gender,
+      role,
+      password,
     },
   });
 };
