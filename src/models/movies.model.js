@@ -12,10 +12,6 @@ const getAllMovies = async (page, limit) => {
   return { data, totalMovies };
 };
 
-const getMovie = async () => {
-  return prisma.movies.findMany();
-};
-
 const createMovie = async (title, genres, year) => {
   return await prisma.movies.create({
     data: {
