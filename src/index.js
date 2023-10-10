@@ -8,6 +8,7 @@ const PORT = process.env.PORT || 2000;
 const app = express();
 
 app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 app.use(morgan("tiny"));
 
 app.get("/ping", (req, res) => {

@@ -61,7 +61,7 @@ const updateUser = async (req, res) => {
   try {
     const { id } = req.user;
     const { email, gender, oldPassword, newPassword, role } = req.body;
-
+    console.log(email);
     const user = await models.getUser(+id);
 
     let updatedUser = {
