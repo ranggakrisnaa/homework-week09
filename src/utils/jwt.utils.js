@@ -13,9 +13,9 @@ const verifyToken = (token) => {
           name: "JsonWebTokenError",
           message: "jwt malformed",
         };
-        reject(err); // Melempar kesalahan jika ada
+        reject(err);
       } else {
-        resolve(decoded); // Mengembalikan data yang didekode jika berhasil
+        resolve(decoded);
       }
     });
   });
