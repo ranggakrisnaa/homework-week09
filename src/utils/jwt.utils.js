@@ -6,7 +6,19 @@ const generateToken = (user) => {
 };
 
 const verifyToken = (token) => {
-  return jwt.verify(token, SECRET_KEY);
+  return new Promise((resolve, reject) => {
+    jwt.verify(token, SECRET_KEY, (err, decoded) => {
+      if (err) {
+        err = {
+          name: "JsonWebTokenError",
+          message: "jwt malformed",
+        };
+        reject(err); // Melempar kesalahan jika ada
+      } else {
+        resolve(decoded); // Mengembalikan data yang didekode jika berhasil
+      }
+    });
+  });
 };
 
 module.exports = { generateToken, verifyToken };

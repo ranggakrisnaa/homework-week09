@@ -32,15 +32,15 @@ const loginUser = async (email) => {
   });
 };
 
-const updateUser = async (id, user) => {
-  const { email, gender, role, password } = user;
+const updateUser = async (id, updatedUser, users) => {
+  const { email, gender, role, password } = updatedUser;
   return await prisma.users.update({
     where: { id },
     data: {
-      email,
-      gender,
-      role,
-      password,
+      email: email || users.email,
+      gender: gender || users.gender,
+      role: role || users.role,
+      password: password || users.password,
     },
   });
 };

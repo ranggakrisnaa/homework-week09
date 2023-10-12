@@ -11,6 +11,12 @@ const getAllMovies = async (page, limit) => {
   return { data, totalMovies };
 };
 
+const getMovie = async (id) => {
+  return await prisma.movies.findUnique({
+    where: { id },
+  });
+};
+
 const createMovie = async (title, genres, year) => {
   return await prisma.movies.create({
     data: {
@@ -21,13 +27,13 @@ const createMovie = async (title, genres, year) => {
   });
 };
 
-const updateMovie = async (idMovies, title, genres, year) => {
+const updateMovie = async (idMovies, title, genres, year, movies) => {
   return await prisma.movies.update({
     where: { id: +idMovies },
     data: {
-      title,
-      genres,
-      year,
+      title: title || movies.title,
+      genres: genres || movies.genres,
+      year: year || movies.year,
     },
   });
 };
@@ -40,6 +46,7 @@ const deleteMovie = async (id) => {
 
 module.exports = {
   getAllMovies,
+  getMovie,
   createMovie,
   updateMovie,
   deleteMovie,

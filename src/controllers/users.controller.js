@@ -2,51 +2,49 @@ const { hashPassword, checkPassword } = require("../utils/bcrypt.utils");
 const { generateToken } = require("../utils/jwt.utils");
 const models = require("../models/users.model");
 
-const getAllUsers = async (req, res) => {
+const getAllUsers = async (req, res, next) => {
   try {
-    const { page, limit } = req.query;
-    if (!page && !limit)
-      res.status(404).json({ message: "Data query is null" });
+    const { page = 1, limit = 10 } = req.query;
 
     const { data, totalUsers } = await models.getAllUsers(+page, +limit);
+    if (data.length === 0) throw { name: "ErrorNotFound" };
 
     res.status(200).json({
+      status: true,
       totalData: totalUsers,
-      totalPages: Math.floor(totalUsers / +limit),
+      totalPages: Math.ceil(totalUsers / +limit),
       currentPage: +page,
       data,
     });
   } catch (error) {
-    res.status(500).json({ error: error.message });
+    next(error);
   }
 };
 
-const registerUser = async (req, res) => {
+const registerUser = async (req, res, next) => {
   try {
     const { email, gender, password, role } = req.body;
     const newPassword = await hashPassword(password);
 
     await models.registerUser(email, gender, newPassword, role);
 
-    res.status(201).json({ message: "REGISTER user successfully" });
+    res
+      .status(201)
+      .json({ status: true, message: "REGISTER user successfully" });
   } catch (error) {
-    res.status(500).json({ error: error.message });
+    next(error);
   }
 };
 
-const loginUser = async (req, res) => {
+const loginUser = async (req, res, next) => {
   try {
     const { email, password } = req.body;
 
     const data = await models.loginUser(email);
-    if (!data) {
-      return res.status(401).json({ error: "Email or password is incorrect" });
-    }
+    if (!data) throw { name: "InvalidCredentials" };
 
     const isPasswordMatch = await checkPassword(password, data.password);
-    if (!isPasswordMatch) {
-      return res.status(401).json({ error: "Email or password is incorrect" });
-    }
+    if (!isPasswordMatch) throw { name: "InvalidCredentials" };
 
     const token = generateToken({
       id: data.id,
@@ -54,13 +52,15 @@ const loginUser = async (req, res) => {
       role: data.role,
     });
 
-    res.status(200).json({ message: "LOGIN user successfully", token });
+    res
+      .status(200)
+      .json({ status: true, message: "LOGIN user successfully", token });
   } catch (error) {
-    res.status(500).json({ error: error.message });
+    next(error);
   }
 };
 
-const updateUser = async (req, res) => {
+const updateUser = async (req, res, next) => {
   try {
     const { id } = req.user;
     const { email, gender, oldPassword, newPassword, role } = req.body;
@@ -82,36 +82,33 @@ const updateUser = async (req, res) => {
           password: hashPass,
         };
       } else {
-        return res.status(404).json({ message: "Please Check Old Password" });
+        throw { name: "InvalidPassword" };
       }
     }
 
-    await models.updateUser(+id, updatedUser);
+    await models.updateUser(+id, updatedUser, user);
 
-    res.status(200).json({
-      message: "UPDATE user successfully",
-    });
+    res.status(200).json({ status: true, message: "UPDATE user successfully" });
   } catch (error) {
-    res.status(500).json({ error: error.message });
+    next(error);
   }
 };
 
-const deleteUser = async (req, res) => {
+const deleteUser = async (req, res, next) => {
   try {
     const { id } = req.params;
 
     const user = await models.getUser(+id);
-    if (!user) {
-      return res.status(404).json({ message: "Data not found" });
-    }
+    if (!user) throw { name: "ErrorNotFound" };
 
     await models.deleteUser(+id);
 
     res.status(200).json({
+      status: true,
       message: "DELETE user successfully",
     });
   } catch (error) {
-    res.status(500).json({ error: error.message });
+    next(error);
   }
 };
 

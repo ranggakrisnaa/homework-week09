@@ -5,15 +5,18 @@ const {
   updateMovie,
   deleteMovie,
 } = require("../controllers/movies.controller");
-const { isAuthenticated, checkRole } = require("../middleware/auth.middleware");
+const {
+  authentication,
+  authorization,
+} = require("../middlewares/auth.middleware");
 
 const router = express.Router();
 
-router.use(isAuthenticated);
-router.get("/movies/", getAllMovies);
-router.use(checkRole);
-router.post("/movies/", createMovie);
-router.patch("/movies/:idMovies", updateMovie);
+router.use(authentication);
+router.get("/movies", getAllMovies);
+router.post("/movies", createMovie);
+router.put("/movies/:idMovies", updateMovie);
+router.use(authorization);
 router.delete("/movies/:id", deleteMovie);
 
 module.exports = router;

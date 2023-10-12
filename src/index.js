@@ -3,6 +3,7 @@ const express = require("express");
 const usersRoutes = require("./routes/users.route");
 const moviesRoutes = require("./routes/movies.route");
 const morgan = require("morgan");
+const errorHandler = require("./middlewares/errorHandler.middleware");
 
 const PORT = process.env.PORT || 2000;
 const app = express();
@@ -21,6 +22,7 @@ app.get("/ping", (req, res) => {
 
 app.use("/api", usersRoutes);
 app.use("/api", moviesRoutes);
+app.use(errorHandler);
 
 app.listen(PORT, () => {
   console.log(`listening on port ${PORT}`);
