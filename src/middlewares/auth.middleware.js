@@ -7,15 +7,11 @@ const authentication = async (req, res, next) => {
     }
 
     const token = req.headers.authorization.split(" ")[1];
-    // return res
-    //   .status(404)
-    //   .json({ message: "unaunthenticated. Token does not exist." });
     const payload = await verifyToken(token);
     req.user = payload.user;
 
     next();
   } catch (error) {
-    // res.status(401).json({ message: "Token is invalid." });
     next(error);
   }
 };
