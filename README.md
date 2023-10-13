@@ -19,7 +19,4 @@ authorization dan authentication. Pastikan yang hanya bisa mengakses API hanyala
 4. Implementasikan Logging server pada aplikasi yang teman-teman buat
 ```
 ###
-###
-```markdown
-Link Dokumentasi API : https://documenter.getpostman.com/view/29492816/2s9YJgUM2g
-```
+
