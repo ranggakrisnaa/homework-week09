@@ -9,6 +9,10 @@ const errorHandler = (err, req, res, next) => {
     res.status(400).json({ status: false, message: "Wrong Email or Password" });
   } else if (err.name === "JsonWebTokenError") {
     res.status(404).json({ status: false, message: "Token is invalid" });
+  } else if (err.name === "badRequest") {
+    res
+      .status(404)
+      .json({ status: false, message: "email and password are empty" });
   } else if (err.name === "ErrorNotFound") {
     res.status(404).json({ status: false, message: "Error Not Found" });
   } else {

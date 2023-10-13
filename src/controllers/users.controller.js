@@ -24,8 +24,9 @@ const getAllUsers = async (req, res, next) => {
 const registerUser = async (req, res, next) => {
   try {
     const { email, gender, password, role } = req.body;
-    const newPassword = await hashPassword(password);
+    if (!email || !password) throw { name: "badRequest" };
 
+    const newPassword = await hashPassword(password);
     await models.registerUser(email, gender, newPassword, role);
 
     res
