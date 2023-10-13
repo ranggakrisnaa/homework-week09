@@ -12,11 +12,9 @@ const {
 
 const router = express.Router();
 
-router.use(authentication);
-router.get("/movies", getAllMovies);
-router.post("/movies", createMovie);
-router.put("/movies/:idMovies", updateMovie);
-router.use(authorization);
-router.delete("/movies/:id", deleteMovie);
+router.get("/movies", authentication, getAllMovies);
+router.post("/movies", authentication, createMovie);
+router.put("/movies/:idMovies", authentication, updateMovie);
+router.delete("/movies/:id", authentication, authorization, deleteMovie);
 
 module.exports = router;

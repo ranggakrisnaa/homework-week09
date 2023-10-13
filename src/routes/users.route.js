@@ -15,10 +15,8 @@ const router = express.Router();
 
 router.post("/register", registerUser);
 router.post("/login", loginUser);
-router.use(authentication);
-router.put("/users", updateUser);
-router.use(authorization);
-router.get("/users", getAllUsers);
-router.delete("/users/:id", deleteUser);
+router.put("/users", authentication, updateUser);
+router.get("/users", authentication, authorization, getAllUsers);
+router.delete("/users/:id", authentication, authorization, deleteUser);
 
 module.exports = router;
