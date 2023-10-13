@@ -3,10 +3,11 @@ const { verifyToken } = require("../utils/jwt.utils");
 const authentication = async (req, res, next) => {
   try {
     if (!req.headers.authorization) {
-      throw { name: "unauthenticated" };
+      throw { name: "Unauthenticated" };
     }
 
-    const token = req.headers.authorization.split(" ")[1];
+    const token =
+      req.headers.authorization.split(" ")[1] || req.headers.authorization;
     const payload = await verifyToken(token);
     req.user = payload.user;
 
@@ -17,12 +18,7 @@ const authentication = async (req, res, next) => {
 };
 
 const authorization = (req, res, next) => {
-  if (req.user.role !== "admin") {
-    return res
-      .status(401)
-      .json({ message: "Not permitted to access the data" });
-  }
-
+  if (req.user.role !== "admin") throw { name: "Unauthorized" };
   next();
 };
 

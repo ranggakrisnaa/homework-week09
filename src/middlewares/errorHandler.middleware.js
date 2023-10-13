@@ -1,6 +1,8 @@
 const errorHandler = (err, req, res, next) => {
-  if (err.name === "unauthenticated") {
-    res.status(401).json({ status: false, message: "Unauthenticated" });
+  if (err.name === "Unauthenticated") {
+    res.status(401).json({ status: false, message: "Unauthenticated User" });
+  } else if (err.name === "Unauthorized") {
+    res.status(403).json({ status: false, message: "Unauthorized User Role" });
   } else if (err.name === "InvalidPassword") {
     res.status(400).json({ status: false, message: "Wrong Old Password" });
   } else if (err.name === "InvalidCredentials") {
