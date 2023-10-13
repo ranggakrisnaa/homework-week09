@@ -7,7 +7,7 @@ const getAllMovies = async (page, limit) => {
   });
 
   const totalMovies = await prisma.movies.count();
-
+  console.log(totalMovies);
   return { data, totalMovies };
 };
 

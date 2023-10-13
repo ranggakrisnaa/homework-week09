@@ -25,8 +25,8 @@ app.get("/ping", (req, res) => {
   }
 });
 
-app.use("/api", usersRoutes);
 app.use("/api", moviesRoutes);
+app.use("/api", usersRoutes);
 app.use(errorHandler);
 
 app.listen(PORT, () => {

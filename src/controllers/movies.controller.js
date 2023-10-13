@@ -11,7 +11,7 @@ const getAllMovies = async (req, res, next) => {
       status: true,
       currentPage: +page,
       totalData: totalMovies,
-      totalPages: Math.floor(totalMovies / +limit),
+      totalPages: Math.ceil(totalMovies / +limit),
       data,
     });
   } catch (error) {

@@ -15,12 +15,12 @@ const getUser = async (id) => {
   return prisma.users.findUnique({ where: { id } });
 };
 
-const registerUser = async (email, gender, newPassword, role) => {
+const registerUser = async (email, gender, password, role) => {
   return await prisma.users.create({
     data: {
       email,
       gender,
-      password: newPassword,
+      password,
       role,
     },
   });
