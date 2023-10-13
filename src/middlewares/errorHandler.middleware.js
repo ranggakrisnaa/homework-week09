@@ -14,7 +14,7 @@ const errorHandler = (err, req, res, next) => {
       .status(404)
       .json({ status: false, message: "email and password are empty" });
   } else if (err.name === "ErrorNotFound") {
-    res.status(404).json({ status: false, message: "Error Not Found" });
+    res.status(400).json({ status: false, message: "Error Not Found" });
   } else {
     res.status(500).json({ status: false, message: "Internal Server Error" });
   }
