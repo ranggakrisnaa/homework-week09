@@ -1,5 +1,5 @@
-const { hashPassword, checkPassword } = require("../utils/bcrypt.utils");
-const { generateToken } = require("../utils/jwt.utils");
+const { hashPassword, checkPassword } = require("../utils/bcrypt.util");
+const { generateToken } = require("../utils/jwt.util");
 const models = require("../models/users.model");
 
 const getAllUsers = async (req, res, next) => {

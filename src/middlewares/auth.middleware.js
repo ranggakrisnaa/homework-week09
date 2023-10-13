@@ -1,4 +1,4 @@
-const { verifyToken } = require("../utils/jwt.utils");
+const { verifyToken } = require("../utils/jwt.util");
 
 const authentication = async (req, res, next) => {
   try {
